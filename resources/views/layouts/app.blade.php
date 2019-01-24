@@ -76,8 +76,13 @@
 
         <main class="app-content py-3">
             <div class="container">
+                @section('breadcrumbs')
 
-            @yield('content')
+                {!! Breadcrumbs::render() !!}
+                @show
+
+                @include('layouts.partials.flash')
+                @yield('content')
             </div>
         </main>
 
