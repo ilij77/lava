@@ -1,6 +1,5 @@
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+
 
 // Variables
 @import 'variables';
@@ -8,7 +7,16 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.navbar {
+  background-color: #0c64a2;
+  padding: 0.35rem 1rem;
+}
+
+body{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.app-content{
+  flex: 1;
 }
