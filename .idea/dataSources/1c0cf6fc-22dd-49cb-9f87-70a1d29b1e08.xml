@@ -93,18 +93,35 @@
       <Position>8</Position>
       <DataType>timestamp|0</DataType>
     </column>
-    <index id="31" parent="14" name="users_email_unique">
+    <column id="31" parent="14" name="status">
+      <Position>9</Position>
+      <DataType>varchar(16)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="32" parent="14" name="verify_code">
+      <Position>10</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <index id="33" parent="14" name="users_email_unique">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="32" parent="14" name="PRIMARY">
+    <index id="34" parent="14" name="users_verify_code_unique">
+      <ColNames>verify_code</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="35" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="33" parent="14" name="users_email_unique">
+    <key id="36" parent="14" name="users_email_unique">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>users_email_unique</UnderlyingIndexName>
+    </key>
+    <key id="37" parent="14" name="users_verify_code_unique">
+      <ColNames>verify_code</ColNames>
+      <UnderlyingIndexName>users_verify_code_unique</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>
