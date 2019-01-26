@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Mail\VerifyMail;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -24,7 +25,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    //use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -50,6 +51,29 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
 
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $this->validate($request,[
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+        $user=User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'verify_token'=>Str::random(),
+            'status'=>User::STATUS_WAIT,
+        ]);
+        \Mail::to($user->email)->send(new VerifyMail($user));
+        event(new Registered($user));
+        return redirect()->route('login')->with('success','Check your email and cleck on the link to verify.');
+    }
 
     public function verify($token){
         if (!$user=User::where('verify_token',$token)->first()){
@@ -66,39 +90,4 @@ class RegisterController extends Controller
 
     }
 
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
-    {
-        $user=User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'verify_token'=>Str::random(),
-            'status'=>User::STATUS_WAIT,
-        ]);
-
-        \Mail::to($user->email)->send(new VerifyMail($user));
-        return $user;
-
-
-    }
-    protected function registered(Request $request, $user)
-    {
-     $this->guard()->logout();
-     return redirect()->route('login')->with('success','Check your email and click on the link to verify.');
-    }
 }
