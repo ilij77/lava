@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Entity\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
@@ -31,14 +32,8 @@ class LoginController extends Controller
     }
 
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $this->validate($request,[
-            'email'=>'required|string',
-            'password'=>'required|string',
-        ]);
-
-
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
             $this->sendLockoutResponse($request);
@@ -58,6 +53,7 @@ class LoginController extends Controller
               return back()->with('error','You need to confirm your account. Please check your email.');
           }
           return redirect()->intended(route('cabinet'));
+
 
         }
 
