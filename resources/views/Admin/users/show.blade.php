@@ -5,6 +5,12 @@
 <div class="d-flex flex-row mb-3">
     <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary mr-1">Edit</a>
 
+    <form method="GET" action="{{ route('register.verify', $user) }}" class="mr-1">
+        @csrf
+
+        <button class="btn btn-danger">Verify</button>
+    </form>
+
     <form method="POST" action="{{ route('admin.users.destroy', $user) }}" class="mr-1">
         @csrf
         @method('DELETE')
@@ -26,10 +32,10 @@
     <tr>
         <th>Status</th>
         <td>
-            @if ($user->status===\App\Entity\User::STATUS_WAIT)
+            @if ($user->isWait())
             <span class="badge badge-secondary">Waiting</span>
             @endif
-            @if ($user->status===\App\Entity\User::STATUS_ACTIV)
+            @if ($user->isActive())
             <span class="badge badge-primary">Active</span>
             @endif
         </td>

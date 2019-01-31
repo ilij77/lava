@@ -35,6 +35,6 @@ class VerifyMail extends Mailable
     public function build()
     {
         return $this->subject('Signup Confirmation')
-            ->markdown('emails.auth.register.verify');
+            ->markdown('Mail.Auth.VerifyMail');
     }
 }

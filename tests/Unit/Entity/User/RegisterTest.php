@@ -11,10 +11,13 @@ namespace Tests\Unit\Entity\User;
 
 use App\Entity\User;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RegisterTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function testRequest():void
     {
         $user=User::register(
@@ -29,20 +32,15 @@ class RegisterTest extends TestCase
 
         self::assertNotEmpty($user->password);
         self::assertNotEquals($password,$user->password);
-
         self::assertTrue($user->isWait);
-        self::assetFalse($user->isActive);
+        self::assertFalse($user->isActive);
     }
     public function testVerify():void
     {
         $user=User::register('name','email','password');
-        if ($user->status !==User::STATUS_WAIT){
-            return redirect()->route('login')->with('error','Your email is already verified');
-        }
-        $user->status=User::STATUS_ACTIV;
-        $user->verify_token=null;
+
     $user->save();
-    $user->veryfy();
+    $user->verify();
     self::assertFalse($user->isWait);
     self::assertTrue($user->isActive);
     }
@@ -50,7 +48,7 @@ class RegisterTest extends TestCase
     {
         $user=User::register('name','email','password');
         $user->verify();
-        $this->expectExceptionMessage('User is already verified');
+        $this->expectExceptionMessage('User is already verified.');
         $user->verify();
 
     }

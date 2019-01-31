@@ -50,11 +50,8 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
-        $statuses=[
-            User::STATUS_WAIT=>'Waiting',
-            User::STATUS_ACTIV=>'Active',
-        ];
-      return view('admin.users.edit',compact('user','statuses'));
+
+      return view('admin.users.edit',compact('user'));
     }
 
 
@@ -70,5 +67,10 @@ class UsersController extends Controller
     {
         $user->delete();
         return redirect()->route('admin.users.index');
+    }
+
+    public function verify(User $user){
+        $user->verify();
+        return redirect()->route('admin.users.show',$user);
     }
 }
