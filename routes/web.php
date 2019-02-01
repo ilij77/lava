@@ -28,7 +28,7 @@ Route::group(
     function (){
         Route::get('/', 'HomeController@index')->name('home');
         Route::resource('users','UsersController');
-        //Route::get('users/verify/{token}','Auth\RegisterController@verify');
+        Route::post('/users/{user}/verify', 'UsersController@verify')->name('users.verify');
 });
 
 
