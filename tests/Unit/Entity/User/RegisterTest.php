@@ -32,8 +32,9 @@ class RegisterTest extends TestCase
 
         self::assertNotEmpty($user->password);
         self::assertNotEquals($password,$user->password);
-        self::assertTrue($user->isWait);
-        self::assertFalse($user->isActive);
+        self::assertTrue($user->isWait());
+        self::assertFalse($user->isActive());
+        self::assertFalse($user->isAdmin());
     }
     public function testVerify():void
     {
@@ -41,8 +42,8 @@ class RegisterTest extends TestCase
 
     $user->save();
     $user->verify();
-    self::assertFalse($user->isWait);
-    self::assertTrue($user->isActive);
+    self::assertFalse($user->isWait());
+    self::assertTrue($user->isActive());
     }
     public function testAlreadyVerified():void
     {
