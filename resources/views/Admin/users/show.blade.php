@@ -33,6 +33,7 @@
     </tr>
     <tr>
         <th>Status</th>
+
         <td>
             @if ($user->isWait())
             <span class="badge badge-secondary">Waiting</span>
@@ -41,9 +42,18 @@
             <span class="badge badge-primary">Active</span>
             @endif
         </td>
+
     </tr>
+    <tr>
+    <th>Role</th><td>
+        @if ($user->isAdmin())
+            <span class="badge badge-danger">Admin</span>
+        @else
 
-
+            <span class="badge badge-secondary">User</span>
+        @endif
+    </td>
+    </tr>
     </tbody>
 </table>
 @endsection

@@ -22,10 +22,47 @@ class UsersController extends Controller
         $this->service = $service;
     }
 
-    public function index()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index(Request $request)
+
     {
-     $users=User::orderBy('id','desc')->paginate(20);
-     return view('admin.users.index',compact('users'));
+        $query=User::orderByDesc('id');
+
+        if (!empty($value=$request->get('id'))){
+            $query->where('id',$value);
+        }
+
+        if (!empty($value=$request->get('name'))){
+            $query->where('name','like','%'.$value.'%');
+        }
+
+        if (!empty($value=$request->get('email'))){
+            $query->where('email','like','%'.$value.'%');
+        }
+
+        if (!empty($value=$request->get('status'))){
+            $query->where('status',$value);
+        }
+
+        if (!empty($value=$request->get('role'))){
+            $query->where('role',$value);
+        }
+        $users=$query->paginate(20);
+
+     //$users=User::orderBy('id','desc')->paginate(20);
+
+        $roles=[
+            User::ROLE_USER=>'User',
+            User::ROLE_ADMIN=>'Admin',
+        ];
+        $statuses=[
+            User::STATUS_ACTIV=>'Activ',
+            User::STATUS_WAIT=>'Wait',
+        ];
+     return view('admin.users.index',compact('users','roles','statuses'));
     }
 
 
@@ -58,15 +95,18 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
-
-      return view('admin.users.edit',compact('user'));
+    $roles=[
+    User::ROLE_USER=>'User',
+    User::ROLE_ADMIN=>'Admin',
+];
+      return view('admin.users.edit',compact('user','roles'));
     }
 
 
     public function update(UpdateRequest $request, User $user)
     {
 
-        $user->update($request->only('name','email','status'));
+        $user->update($request->only('name','email','status','role'));
        return redirect()->route('admin.users.show',$user);
     }
 

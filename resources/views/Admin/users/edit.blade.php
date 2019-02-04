@@ -22,6 +22,16 @@
                 <span class="invalid-feedback"><strong>{{ $errors->first('email') }}</strong></span>
             @endif
         </div>
+        <div class="form-group">
+            <label for="role" class="col-form-label">Role</label>
+            <select id="role" class="form-control" name="role">
+                @foreach($roles as $value=>$role)
+                    <option value="{{$value}}"{{$value===old('role',$user->role)?'selected':''}}>
+                        {{$role}}
+                    </option>
+                    @endforeach
+            </select>
+        </div>
 
 
         <div class="form-group">
