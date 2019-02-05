@@ -15,28 +15,21 @@ use App\UseCases\Auth\RegisterService;
 
 class RegionController extends Controller
 {
-
-
     public function index(Request $request)
 
     {
-        $regions=Region::orderBy('name')->get();
-
+        $regions=Region::orderBy('name')->paginate(30);
 
      return view('admin.regions.index',compact('regions'));
     }
 
-
     public function create(Request $request)
     {
-
         return view('admin.regions.create');
     }
 
-
     public function store(Request $request)
     {
-
         $this->validate($request,[
             'name'=>'required|string|max:255|unique:regions,name,NULL,id,parent_id' .($request['parent'] ?:'NULL'),
             'slug'=>'required|string|max:255|unique:regions,name,NULL,id,parent_id' .($request['parent'] ?:'NULL'),
@@ -49,13 +42,11 @@ class RegionController extends Controller
         ]);
 
         return redirect()->route('admin.regions.show');
-
     }
-
 
     public function show(Region $region)
     {
-        $regions=Region::where('parent_id',$region->id)->orderBy('name')->gen();
+        $regions=Region::where('parent_id',$region->id)->orderBy('name')->get();
       return view('admin.regions.show',compact('region','regions'));
     }
 
@@ -66,25 +57,19 @@ class RegionController extends Controller
       return view('admin.regions.edit',compact('region'));
     }
 
-
     public function update(Request $request, Region $region)
     {
-
-
         $this->validate($request,[
             'name'=>'required|string|max:255|unique:regions,name,NULL,id,parent_id' .($request['parent'] ?:'NULL'),
             'slug'=>'required|string|max:255|unique:regions,name,NULL,id,parent_id' .($request['parent'] ?:'NULL'),
-
         ]);
         $region->update([
             'name'=>$request['name'],
             'slug'=>$request['slug'],
 
         ]);
-
        return redirect()->route('admin.regions.show',$region);
     }
-
 
     public function destroy(Region $region)
     {
