@@ -3,10 +3,10 @@
 @section('content')
 @include('admin.regions._nav')
 <div class="d-flex flex-row mb-3">
-    <a href="{{ route('admin.regions.edit', $regions) }}" class="btn btn-primary mr-1">Edit</a>
+    <a href="{{ route('admin.regions.edit', $region) }}" class="btn btn-primary mr-1">Edit</a>
 
 
-    <form method="POST" action="{{ route('admin.regions.destroy', $regions) }}" class="mr-1">
+    <form method="POST" action="{{ route('admin.regions.destroy', $region) }}" class="mr-1">
         @csrf
         @method('DELETE')
         <button class="btn btn-danger">Delete</button>
@@ -27,4 +27,5 @@
 
     </tbody>
 </table>
+@include('admin.regions.list',['regions'=>$regions])
 @endsection

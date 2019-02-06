@@ -18,14 +18,18 @@ class RegionController extends Controller
     public function index(Request $request)
 
     {
-        $regions=Region::orderBy('name')->paginate(30);
+        $regions=Region::where('parent_id',null)->orderBy('name')->paginate(30);
 
      return view('admin.regions.index',compact('regions'));
     }
 
     public function create(Request $request)
-    {
-        return view('admin.regions.create');
+    {    $parent=null;
+    if($request->get('parent')){
+        $parent=Region::findOrFail($request->get('parent'));
+    }
+
+        return view('admin.regions.create', compact('parent'));
     }
 
     public function store(Request $request)
@@ -33,7 +37,7 @@ class RegionController extends Controller
         $this->validate($request,[
             'name'=>'required|string|max:255|unique:regions,name,NULL,id,parent_id' .($request['parent'] ?:'NULL'),
             'slug'=>'required|string|max:255|unique:regions,name,NULL,id,parent_id' .($request['parent'] ?:'NULL'),
-            'parent'=>'optional|exists:exists,id'
+            'parent'=>'nullable|exists:regions,id'
         ]);
         $region=Region::create([
             'name'=>$request['name'],
@@ -46,7 +50,8 @@ class RegionController extends Controller
 
     public function show(Region $region)
     {
-        $regions=Region::where('parent_id',$region->id)->orderBy('name')->get();
+        $regions=$region->children()->orderBy('name')->get();
+
       return view('admin.regions.show',compact('region','regions'));
     }
 
@@ -66,6 +71,7 @@ class RegionController extends Controller
         $region->update([
             'name'=>$request['name'],
             'slug'=>$request['slug'],
+            'parent_id'=>$request['parent'],
 
         ]);
        return redirect()->route('admin.regions.show',$region);

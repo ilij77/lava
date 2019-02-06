@@ -74,8 +74,13 @@ Breadcrumbs::for('admin.regions.create', function ($trail) {
 });
 
 Breadcrumbs::for('admin.regions.show', function ($trail, Region $region) {
-    $trail->parent('admin.regions.index');
-    $trail->push('Просмотр региона '.$region->name, route('admin.regions.show',$region));
+    if ($parent=$region->parent){
+        $trail->parent('admin.regions.show',$parent);
+    }else{
+        $trail->parent('admin.regions.index');
+    }
+
+    $trail->push('Регион '.$region->name, route('admin.regions.show',$region));
 });
 
 Breadcrumbs::for('admin.regions.edit', function ($trail, Region $region) {
