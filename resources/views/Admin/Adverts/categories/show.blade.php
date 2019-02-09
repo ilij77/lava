@@ -8,7 +8,7 @@
         <form method="POST" action="{{ route('admin.adverts.categories.destroy', $category) }}" class="mr-1">
             @csrf
             @method('DELETE')
-            <button class="btn btn-danger">Delete </button>
+            <button class="btn btn-danger">Delete</button>
         </form>
     </div>
 
@@ -27,29 +27,30 @@
         </tbody>
     </table>
 
-    <p><a href="#" class="btn btn-success">Add Attribute</a></p>
+    <p><a href="{{ route('admin.adverts.categories.attributes.create', $category) }}" class="btn btn-success">Add Attribute</a></p>
 
     <table class="table table-bordered">
         <thead>
         <tr>
-
+            <th>Sort</th>
             <th>Name</th>
             <th>Slug</th>
-
+            <th>Required</th>
         </tr>
         </thead>
         <tbody>
 
+        <tr><th colspan="4">Parent attributes</th></tr>
 
-
-
+        @foreach ($Attributes as $attribute)
             <tr>
-
-                <td>{{ $category->name }}</td>
-                <td>{{ $category->slug }}</td>
-
+                <td>{{ $attribute->sort }}</td>
+                <td>{{ $attribute->name }}</td>
+                <td>{{ $attribute->type }}</td>
+                <td>{{ $attribute->required ? 'Yes' : '' }}</td>
             </tr>
 
+        @endforeach
 
         </tbody>
     </table>

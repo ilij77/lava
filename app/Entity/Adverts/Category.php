@@ -11,4 +11,8 @@ class Category extends Model
    protected $table='advert_categories';
    public $timestamps=false;
    protected $fillable=['name','slug','parent_id'];
+   public function attributes()
+   {
+       return $this->hasMany(Attribute::class,'category_id','id');
+   }
 }
