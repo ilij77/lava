@@ -19,7 +19,7 @@ class CategoryController extends Controller
     public function index()
 {
     $categories=Category::defaultOrder()->withDepth()->get();
-    return view('admin.adverts.categories.inde[',compact('categories'));
+    return view('admin.adverts.categories.index',compact('categories'));
 
 }
 
@@ -46,6 +46,7 @@ class CategoryController extends Controller
         return redirect()->route('admin.adverts.categories.show',$category);
 
     }
+
     public function show(Category $category)
     {
         return view('admin.adverts.categories.show',compact('category'));
@@ -53,7 +54,58 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $parents=Category::defaultOrder()->withDepth()->get();
+        return view('admin.adverts.categories.edit',compact('category','parents'));
     }
+
+    public function update(Request $request,Category $category)
+    {
+        $this->validate($request,[
+            'name'=>'required|string|max:255',
+            'slug'=>'required|string|max:255',
+            'parent'=>'nullable|inreger|esiwtw:advert_categories,id',
+        ]);
+        $category->update([
+            'name'=>$request['name'],
+            'slug'=>$request['slug'],
+            'parent'=>$request['parent'],
+        ]);
+
+        return redirect()->route('admin.adverts.categories.show',$category);
+
+    }
+    public function destroy(Category $category){
+        $category->delete();
+        return redirect()->route('admin.adverts.categories.index');
+
+    }
+    public function first(Category $category)
+    {
+        if ($first=$category->siblings()->defaultOrder()->first()){
+            $category->insertBeforeNode($first);
+        }
+        return redirect()->route('admin.adverts.categories.index');
+    }
+    public function up (Category $category)
+    {
+        $category->up();
+        return redirect()->route('admin.adverts.categories.index');
+    }
+
+    public function down(Category $category)
+    {
+        $category->down();
+        return redirect()->route('admin.adverts.categories.index');
+    }
+
+    public function last(Category $category)
+    {
+        if ($last=$category->siblings()->defaultOrder('desc')->first()){
+            $category->insertAfterNode($last);
+        }
+        return redirect()->route('admin.adverts.categories.index');
+    }
+
+
 
 
 }
