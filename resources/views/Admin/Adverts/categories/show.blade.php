@@ -42,15 +42,31 @@
 
         <tr><th colspan="4">Parent attributes</th></tr>
 
-        @foreach ($Attributes as $attribute)
+        @forelse ($parentAttributes as $attribute)
             <tr>
                 <td>{{ $attribute->sort }}</td>
                 <td>{{ $attribute->name }}</td>
                 <td>{{ $attribute->type }}</td>
                 <td>{{ $attribute->required ? 'Yes' : '' }}</td>
             </tr>
+        @empty
+            <tr><td colspan="4">None</td></tr>
+        @endforelse
 
-        @endforeach
+        <tr><th colspan="4">Own attributes</th></tr>
+
+        @forelse ($attributes as $attribute)
+            <tr>
+                <td>{{ $attribute->sort }}</td>
+                <td>
+                    <a href="{{ route('admin.adverts.categories.attributes.show', [$category, $attribute]) }}">{{ $attribute->name }}</a>
+                </td>
+                <td>{{ $attribute->type }}</td>
+                <td>{{ $attribute->required ? 'Yes' : '' }}</td>
+            </tr>
+        @empty
+            <tr><td colspan="4">None</td></tr>
+        @endforelse
 
         </tbody>
     </table>

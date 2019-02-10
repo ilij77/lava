@@ -1,6 +1,7 @@
 <?php
 
 // Home
+use App\Entity\Adverts\Attribute;
 use App\Entity\Adverts\Category;
 use App\Entity\Region;
 
@@ -114,5 +115,24 @@ Breadcrumbs::for('admin.adverts.categories.edit', function ($trail, Category $ca
     $trail->parent('admin.adverts.categories.show',$category);
     $trail->push('Edit'.$category->name, route('admin.adverts.categories.edit',$category));
 });
+
+//Advert Category Attributes
+
+Breadcrumbs::for('admin.adverts.categories.attributes.create', function ($trail, Category $category) {
+    $trail->parent('admin.adverts.categories.show',$category);
+    $trail->push('Create', route('admin.adverts.categories.attributes.create',$category));
+});
+
+Breadcrumbs::for('admin.adverts.categories.attributes.show', function ($trail,Category $category, Attribute $attribute) {
+    $trail->parent('admin.adverts.categories.show',$category);
+    $trail->push('Show', route('admin.adverts.categories.attributes.show',[$category,$attribute]));
+});
+
+Breadcrumbs::for('admin.adverts.categories.attributes.edit', function ($trail,Category $category, Attribute $attribute) {
+    $trail->parent('admin.adverts.categories.attributes.show',$category,$attribute);
+    $trail->push('Edit', route('admin.adverts.categories.attributes.edit',[$category,$attribute]));
+});
+
+
 
 

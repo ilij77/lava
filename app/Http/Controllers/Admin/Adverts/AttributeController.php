@@ -12,14 +12,16 @@ class AttributeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:manage-adverts-categories');
+        //$this->middleware('can:manage-adverts-categories');
     }
 
     public function create(Category $category)
     {
-        $types = Attribute::typesList();
+       $types = Attribute::typesList();
 
-        return view('admin.adverts.categories.attributes.create', compact('category', 'types'));
+
+
+        return view('admin.adverts.categories.attributes.create',compact('category','types'));
     }
 
     public function store(Request $request, Category $category)
@@ -76,9 +78,9 @@ class AttributeController extends Controller
         return redirect()->route('admin.adverts.categories.show', $category);
     }
 
-    public function destroy(Category $category)
+    public function destroy(Category $category, Attribute $attribute)
     {
-        $category->delete();
+        $category->attributes()->findOrFail($attribute->id)->delete();
 
         return redirect()->route('admin.adverts.categories.show', $category);
     }

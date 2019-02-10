@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
-    public const TYPE_STRING='string';
-    public const TYPE_INTEGER='integer';
-    public const TYPE_FLOAT='float';
+    public const TYPE_STRING = 'string';
+    public const TYPE_INTEGER = 'integer';
+    public const TYPE_FLOAT = 'float';
 
     protected $table='advert_attributes';
     public  $timestamps=false;
@@ -16,12 +16,12 @@ class Attribute extends Model
     protected  $casts=[
         'variants'=>'array',
     ];
-    public static function typesList(): array
+    public static function typesList()
     {
         return [
-            self:: TYPE_STRING=>'string',
-            self:: TYPE_INTEGER=>'integer',
-            self:: TYPE_FLOAT=>'float',
+            self:: TYPE_STRING =>'string',
+            self:: TYPE_INTEGER =>'integer',
+            self:: TYPE_FLOAT =>'float',
         ];
     }
     public function isString():bool
