@@ -22,6 +22,8 @@
                     @endif
 
                     You sait
+                    {{Hash::make('secret')}}
+
                 </div>
             </div>
         </div>
