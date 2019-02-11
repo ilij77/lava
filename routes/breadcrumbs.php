@@ -32,10 +32,7 @@ Breadcrumbs::for('password.reset', function ($trail) {
     $trail->push('Change', route('password.reset'));
 });
 
-Breadcrumbs::for('cabinet', function ($trail) {
-    $trail->parent('home');
-    $trail->push('Cabinet  ', route('cabinet'));
-});
+
 
 
 Breadcrumbs::for('admin.home', function ($trail) {
@@ -131,6 +128,23 @@ Breadcrumbs::for('admin.adverts.categories.attributes.show', function ($trail,Ca
 Breadcrumbs::for('admin.adverts.categories.attributes.edit', function ($trail,Category $category, Attribute $attribute) {
     $trail->parent('admin.adverts.categories.attributes.show',$category,$attribute);
     $trail->push('Edit', route('admin.adverts.categories.attributes.edit',[$category,$attribute]));
+});
+
+//Cabinet
+
+Breadcrumbs::for('cabinet.home', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Cabinet', route('cabinet.home'));
+});
+
+Breadcrumbs::for('cabinet.profile.home', function ($trail) {
+    $trail->parent('cabinet.home');
+    $trail->push('Profile', route('cabinet.profile.home'));
+});
+
+Breadcrumbs::for('cabinet.profile.edit', function ($trail) {
+    $trail->parent('cabinet.profile.home');
+    $trail->push('Edit', route('cabinet.profile.edit'));
 });
 
 

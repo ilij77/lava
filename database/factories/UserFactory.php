@@ -18,6 +18,7 @@ $factory->define(User::class, function (Faker $faker) {
     $active=$faker->boolean();
     return [
         'name' => $faker->name,
+        'last_name'=>$faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => Hash::make('secret'), // secret
