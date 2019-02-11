@@ -7,7 +7,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class LoginTestTest extends TestCase
+class LoginTest extends TestCase
 {
 
     public function testForm()
@@ -31,7 +31,7 @@ class LoginTestTest extends TestCase
 
     public function testWait()
     {
-        $user=factory(User::class)->create(['status'=>User::STATUS_WAIT]);
+        $user=factory(User::class)->create(['status'=>User::STATUS_WAIT,'role'=>User::ROLE_USER]);
         $response=$this->post('/login',[
             'email'=>$user->email,
             'password'=>'secret',
@@ -45,15 +45,15 @@ class LoginTestTest extends TestCase
 
     public function testActive()
     {
-        $user=factory(User::class)->create(['status'=>User::STATUS_ACTIV]);
+        $user=factory(User::class)->create(['status'=>User::STATUS_ACTIV,'role'=>User::ROLE_USER]);
         $response=$this->post('/login',[
             'email'=>$user->email,
             'password'=>'secret',
         ]);
         $response
             ->assertStatus(302)
-            ->assertRedirect('/cabinet')
-            ->assertAuthenticated();
+            ->assertRedirect('/cabinet');
+        $this->assertAuthenticated();
 
 
     }
