@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,6 +15,10 @@ use Illuminate\Support\Str;
  * @property string $last_name
  * @property string $email
  * @property string $status
+ * @property string $phone
+ * @property string $phone_verify_token
+ * @property bool $phone_verified
+ * @property Carbon $phone_verify_token_expire
  */
 
 class User extends Authenticatable
@@ -45,6 +50,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
 
+    ];
+    protected $casts=[
+        'phone_verified'=>'boolean',
+        'phone_verify_token_expire'=>'datetime',
     ];
 
     public static function register(string $name, string  $email, string $password):self {
@@ -97,6 +106,31 @@ class User extends Authenticatable
     public function isAdmin():bool
     {
         return$this->role===self::ROLE_ADMIN;
+    }
+
+    public function unverifyPhone():void
+    {
+        $this->phone_verified=false;
+        $this->phone_verify_token=null;
+        $this->phone_verify_token_expire=null;
+        $this->saveOrFail();
+    }
+
+    public function requestPhoneVerification(Carbon $now):string
+    {
+        if (empty($this->phone)){
+            throw new \DomainException('Phone number is empty.');
+        }
+        if (!empty($this->phone_verify_token)&&$this->phone_verify_token_expire &&
+            $this->phone_verify_token_expire->gt($now)){
+            throw new \DomainException('Token is already requested.');
+        }
+        $this->phone_verified=false;
+        $this->phone_verify_token=(string)random_int(10000,99999);
+        $this->phone_verify_token_expire=$now->copy()->addSecond(300);
+        $this->saveOrFail();
+
+        return $this->phone_verify_token;
     }
 
 
