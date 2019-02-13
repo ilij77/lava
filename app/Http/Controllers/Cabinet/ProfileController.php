@@ -31,7 +31,7 @@ class ProfileController extends Controller
         $this->validate($request,[
             'name'=>'required|string|max:255',
             'last_name'=>'required|string|max:255',
-            'phone'=>'required|string|max:255|regex:/*\d+$/s',
+            'phone'=>'required|string|max:255|regex:/^\d+$/s',
         ]);
         $user=Auth::user();
         $oldPhone=$user->phone;

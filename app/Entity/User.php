@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name', 'email','email_verified_at', 'password', 'remember_token',
-        'verify_token', 'role', 'status', 'updated_at', 'created_at','last_name',
+        'verify_token', 'role', 'status', 'updated_at', 'created_at','last_name','phone',
     ];
 
     /**
@@ -146,5 +146,10 @@ class User extends Authenticatable
         $this->phone_verify_token_expire=null;
         $this->saveOrFail();
     }
+    public function isPhoneVerified(): bool
+    {
+        return $this->phone_verified;
+    }
+
 
 }
