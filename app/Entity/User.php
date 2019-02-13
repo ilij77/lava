@@ -133,5 +133,18 @@ class User extends Authenticatable
         return $this->phone_verify_token;
     }
 
+    public function verifyPhone($token,Carbon $now):void
+    {
+        if ($token !==$this->phone_verify_token){
+            throw new \DomainException('Incorrect verify token.');
+        }
+        if ($this->phone_verify_token_expire->lt($now)){
+            throw new \DomainException('Token is expired.');
+        }
+        $this->phone_verified=true;
+        $this->phone_verify_token=null;
+        $this->phone_verify_token_expire=null;
+        $this->saveOrFail();
+    }
 
 }

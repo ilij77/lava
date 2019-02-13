@@ -63,7 +63,7 @@ class PhoneTest  extends TestCase
         ]);
         self::assertTrue($user->isPhoneVerified());
         $user->requestPhoneVerification(Carbon::now());
-        self::assetFalse($user->isPhoneVerified());
+        self::assertFalse($user->isPhoneVerified());
         self::assertNotEmpty($user->phone_verify_token);
     }
 
@@ -76,7 +76,7 @@ class PhoneTest  extends TestCase
         ]);
         $user->requestPhoneVerification($now=Carbon::now());
         $user->requestPhoneVerification($now->copy()->addSeconds(500));
-        self::asserFalse($user->isPhoneVerified());
+        self::assertFalse($user->isPhoneVerified());
 
     }
 
