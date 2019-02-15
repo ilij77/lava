@@ -152,6 +152,11 @@ Breadcrumbs::for('cabinet.profile.phone', function ($trail) {
     $trail->push('Phone', route('cabinet.profile.phone'));
 });
 
+//Cabinet Adverts
+Breadcrumbs::for('cabinet.adverts.index', function ($trail) {
+    $trail->parent('cabinet.home');
+    $trail->push('Adverts', route('cabinet.adverts.index'));
+});
 
 
 
