@@ -36,6 +36,8 @@ class LoginTest extends TestCase
             'email'=>$user->email,
             'password'=>'secret',
         ]);
+
+
         $response
             ->assertStatus(302)
             ->assertRedirect('/')

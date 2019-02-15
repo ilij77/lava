@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name', 'email','email_verified_at', 'password', 'remember_token',
-        'verify_token', 'role', 'status', 'updated_at', 'created_at','last_name','phone',
+        'verify_token', 'role', 'status', 'updated_at', 'created_at','last_name','phone','phone_auth',
     ];
 
     /**
@@ -150,6 +150,25 @@ class User extends Authenticatable
     {
         return $this->phone_verified;
     }
+    public function enablePhoneAuth(): void
+    {
+        if (!empty($this->phone) && !$this->isPhoneVerified()) {
+           throw new \DomainException('Phone number is empty.');
+        }
+        $this->phone_auth = true;
+        $this->saveOrFail();
+    }
+
+    public function disablePhoneAuth(): void
+    {
+        $this->phone_auth = false;
+        $this->saveOrFail();
+    }
+    public function isPhoneAuthEnabled(): bool
+    {
+        return (bool)$this->phone_auth;
+    }
+
 
 
 }
