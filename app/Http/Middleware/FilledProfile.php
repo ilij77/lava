@@ -6,7 +6,6 @@ use Closure;
 
 class FilledProfile
 {
-
     public function handle($request, Closure $next)
     {
         $user=\Auth::user();
