@@ -97,7 +97,7 @@
         </div>
 
     </footer>
-
+<script src="{{mix('public/js/app.js','build')}}"></script>
 
 </body>
 </html>
