@@ -1495,7 +1495,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a session based authentication guard.
+         * create a session based authentication guard.
          *
          * @param string $name
          * @param array $config
@@ -1508,7 +1508,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a token based authentication guard.
+         * create a token based authentication guard.
          *
          * @param string $name
          * @param array $config
@@ -1618,7 +1618,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create the user provider implementation for the driver.
+         * create the user provider implementation for the driver.
          *
          * @param string|null $provider
          * @return \Illuminate\Contracts\Auth\UserProvider|null 
@@ -2583,7 +2583,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new cache repository with the given implementation.
+         * create a new cache repository with the given implementation.
          *
          * @param \Illuminate\Contracts\Cache\Store $store
          * @return \Illuminate\Cache\Repository 
@@ -3289,7 +3289,7 @@ namespace Illuminate\Support\Facades {
     class Cookie {
         
         /**
-         * Create a new cookie instance.
+         * create a new cookie instance.
          *
          * @param string $name
          * @param string $value
@@ -3309,7 +3309,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a cookie that lasts "forever" (five years).
+         * create a cookie that lasts "forever" (five years).
          *
          * @param string $name
          * @param string $value
@@ -3477,7 +3477,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new encryption key for the given cipher.
+         * create a new encryption key for the given cipher.
          *
          * @param string $cipher
          * @return string 
@@ -4613,7 +4613,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a class based listener using the IoC container.
+         * create a class based listener using the IoC container.
          *
          * @param string $listener
          * @param bool $wildcard
@@ -4913,7 +4913,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a hard link to the target file or directory.
+         * create a hard link to the target file or directory.
          *
          * @param string $target
          * @param string $link
@@ -5121,7 +5121,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a directory.
+         * create a directory.
          *
          * @param string $path
          * @param int $mode
@@ -5473,7 +5473,7 @@ namespace Illuminate\Support\Facades {
     class Hash {
         
         /**
-         * Create an instance of the Bcrypt hash Driver.
+         * create an instance of the Bcrypt hash Driver.
          *
          * @return \Illuminate\Hashing\BcryptHasher 
          * @static 
@@ -5484,7 +5484,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create an instance of the Argon2i hash Driver.
+         * create an instance of the Argon2i hash Driver.
          *
          * @return \Illuminate\Hashing\ArgonHasher 
          * @static 
@@ -5495,7 +5495,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create an instance of the Argon2id hash Driver.
+         * create an instance of the Argon2id hash Driver.
          *
          * @return \Illuminate\Hashing\Argon2IdHasher 
          * @static 
@@ -6051,7 +6051,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new, on-demand aggregate logger instance.
+         * create a new, on-demand aggregate logger instance.
          *
          * @param array $channels
          * @param string|null $channel
@@ -7315,7 +7315,7 @@ namespace Illuminate\Support\Facades {
     class Redirect {
         
         /**
-         * Create a new redirect response to the "home" route.
+         * create a new redirect response to the "home" route.
          *
          * @param int $status
          * @return \Illuminate\Http\RedirectResponse 
@@ -7327,7 +7327,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to the previous location.
+         * create a new redirect response to the previous location.
          *
          * @param int $status
          * @param array $headers
@@ -7341,7 +7341,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to the current URI.
+         * create a new redirect response to the current URI.
          *
          * @param int $status
          * @param array $headers
@@ -7354,7 +7354,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response, while putting the current URL in the session.
+         * create a new redirect response, while putting the current URL in the session.
          *
          * @param string $path
          * @param int $status
@@ -7369,7 +7369,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to the previously intended location.
+         * create a new redirect response to the previously intended location.
          *
          * @param string $default
          * @param int $status
@@ -7396,7 +7396,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to the given path.
+         * create a new redirect response to the given path.
          *
          * @param string $path
          * @param int $status
@@ -7411,7 +7411,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to an external URL (no validation).
+         * create a new redirect response to an external URL (no validation).
          *
          * @param string $path
          * @param int $status
@@ -7425,7 +7425,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to the given HTTPS path.
+         * create a new redirect response to the given HTTPS path.
          *
          * @param string $path
          * @param int $status
@@ -7439,7 +7439,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to a named route.
+         * create a new redirect response to a named route.
          *
          * @param string $route
          * @param mixed $parameters
@@ -7454,7 +7454,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to a controller action.
+         * create a new redirect response to a controller action.
          *
          * @param string|array $action
          * @param mixed $parameters
@@ -7539,7 +7539,7 @@ namespace Illuminate\Support\Facades {
     class Request {
         
         /**
-         * Create a new Illuminate HTTP request from server variables.
+         * create a new Illuminate HTTP request from server variables.
          *
          * @return static 
          * @static 
@@ -7828,7 +7828,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new request instance from the given Laravel request.
+         * create a new request instance from the given Laravel request.
          *
          * @param \Illuminate\Http\Request $from
          * @param \Illuminate\Http\Request|null $to
@@ -7841,7 +7841,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create an Illuminate request from a Symfony instance.
+         * create an Illuminate request from a Symfony instance.
          *
          * @param \Symfony\Component\HttpFoundation\Request $request
          * @return \Illuminate\Http\Request 
@@ -9511,7 +9511,7 @@ namespace Illuminate\Support\Facades {
     class Response {
         
         /**
-         * Create a new response instance.
+         * create a new response instance.
          *
          * @param string $content
          * @param int $status
@@ -9525,7 +9525,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new "no content" response.
+         * create a new "no content" response.
          *
          * @param int $status
          * @param array $headers
@@ -9538,7 +9538,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new response for a given view.
+         * create a new response for a given view.
          *
          * @param string $view
          * @param array $data
@@ -9553,7 +9553,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new JSON response instance.
+         * create a new JSON response instance.
          *
          * @param mixed $data
          * @param int $status
@@ -9568,7 +9568,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new JSONP response instance.
+         * create a new JSONP response instance.
          *
          * @param string $callback
          * @param mixed $data
@@ -9584,7 +9584,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new streamed response instance.
+         * create a new streamed response instance.
          *
          * @param \Closure $callback
          * @param int $status
@@ -9598,7 +9598,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new streamed response instance as a file download.
+         * create a new streamed response instance as a file download.
          *
          * @param \Closure $callback
          * @param string|null $name
@@ -9613,7 +9613,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new file download response.
+         * create a new file download response.
          *
          * @param \SplFileInfo|string $file
          * @param string|null $name
@@ -9641,7 +9641,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to the given path.
+         * create a new redirect response to the given path.
          *
          * @param string $path
          * @param int $status
@@ -9656,7 +9656,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to a named route.
+         * create a new redirect response to a named route.
          *
          * @param string $route
          * @param array $parameters
@@ -9671,7 +9671,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to a controller action.
+         * create a new redirect response to a controller action.
          *
          * @param string $action
          * @param array $parameters
@@ -9686,7 +9686,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response, while putting the current URL in the session.
+         * create a new redirect response, while putting the current URL in the session.
          *
          * @param string $path
          * @param int $status
@@ -9701,7 +9701,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new redirect response to the previously intended location.
+         * create a new redirect response to the previously intended location.
          *
          * @param string $default
          * @param int $status
@@ -9873,7 +9873,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a redirect from one URI to another.
+         * create a redirect from one URI to another.
          *
          * @param string $uri
          * @param string $destination
@@ -9887,7 +9887,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a permanent redirect from one URI to another.
+         * create a permanent redirect from one URI to another.
          *
          * @param string $uri
          * @param string $destination
@@ -9982,7 +9982,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a route group with shared attributes.
+         * create a route group with shared attributes.
          *
          * @param array $attributes
          * @param \Closure|string $routes
@@ -10080,7 +10080,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a response instance from the given value.
+         * create a response instance from the given value.
          *
          * @param \Symfony\Component\HttpFoundation\Request $request
          * @param mixed $response
@@ -10727,7 +10727,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a new table on the schema.
+         * create a new table on the schema.
          *
          * @param string $table
          * @param \Closure $callback
@@ -11458,7 +11458,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create an instance of the local driver.
+         * create an instance of the local driver.
          *
          * @param array $config
          * @return \Illuminate\Filesystem\FilesystemAdapter 
@@ -11470,7 +11470,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create an instance of the ftp driver.
+         * create an instance of the ftp driver.
          *
          * @param array $config
          * @return \Illuminate\Filesystem\FilesystemAdapter 
@@ -11482,7 +11482,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create an instance of the sftp driver.
+         * create an instance of the sftp driver.
          *
          * @param array $config
          * @return \Illuminate\Filesystem\FilesystemAdapter 
@@ -11494,7 +11494,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create an instance of the Amazon S3 driver.
+         * create an instance of the Amazon S3 driver.
          *
          * @param array $config
          * @return \Illuminate\Contracts\Filesystem\Cloud 
@@ -11506,7 +11506,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create an instance of the Rackspace driver.
+         * create an instance of the Rackspace driver.
          *
          * @param array $config
          * @return \Illuminate\Contracts\Filesystem\Cloud 
@@ -11639,7 +11639,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a streamed response for a given file.
+         * create a streamed response for a given file.
          *
          * @param string $path
          * @param string|null $name
@@ -11654,7 +11654,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a streamed download response for a given file.
+         * create a streamed download response for a given file.
          *
          * @param string $path
          * @param string|null $name
@@ -11975,7 +11975,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a directory.
+         * create a directory.
          *
          * @param string $path
          * @return bool 
@@ -12142,7 +12142,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a signed route URL for a named route.
+         * create a signed route URL for a named route.
          *
          * @param string $name
          * @param array $parameters
@@ -12157,7 +12157,7 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create a temporary signed route URL for a named route.
+         * create a temporary signed route URL for a named route.
          *
          * @param string $name
          * @param \DateTimeInterface|\DateInterval|int $expiration
@@ -12466,7 +12466,7 @@ namespace Illuminate\Support\Facades {
     class Validator {
         
         /**
-         * Create a new Validator instance.
+         * create a new Validator instance.
          *
          * @param array $data
          * @param array $rules
@@ -14210,7 +14210,7 @@ namespace  {
 
     class Eloquent extends \Illuminate\Database\Eloquent\Model {         
             /**
-             * Create and return an un-saved model instance.
+             * create and return an un-saved model instance.
              *
              * @param array $attributes
              * @return \Illuminate\Database\Eloquent\Model 
@@ -14347,7 +14347,7 @@ namespace  {
             }
          
             /**
-             * Create a collection of models from plain arrays.
+             * create a collection of models from plain arrays.
              *
              * @param array $items
              * @return \Illuminate\Database\Eloquent\Collection 
@@ -14359,7 +14359,7 @@ namespace  {
             }
          
             /**
-             * Create a collection of models from a raw query.
+             * create a collection of models from a raw query.
              *
              * @param string $query
              * @param array $bindings
@@ -14451,7 +14451,7 @@ namespace  {
             }
          
             /**
-             * Create or update a record matching the attributes, and fill it with values.
+             * create or update a record matching the attributes, and fill it with values.
              *
              * @param array $attributes
              * @param array $values
@@ -14679,7 +14679,7 @@ namespace  {
             }
          
             /**
-             * Create a new instance of the model being queried.
+             * create a new instance of the model being queried.
              *
              * @param array $attributes
              * @return \Illuminate\Database\Eloquent\Model|static 
@@ -15689,7 +15689,7 @@ namespace  {
             }
          
             /**
-             * Create a new query instance for nested where condition.
+             * create a new query instance for nested where condition.
              *
              * @return \Illuminate\Database\Query\Builder 
              * @static 
@@ -16390,7 +16390,7 @@ namespace  {
             }
          
             /**
-             * Create a raw database expression.
+             * create a raw database expression.
              *
              * @param mixed $value
              * @return \Illuminate\Database\Query\Expression 

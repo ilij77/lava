@@ -47,7 +47,7 @@ Breadcrumbs::for('admin.users.index', function ($trail) {
 
 Breadcrumbs::for('admin.users.create', function ($trail) {
     $trail->parent('admin.users.index');
-    $trail->push('Create', route('admin.users.create'));
+    $trail->push('create', route('admin.users.create'));
 });
 
 Breadcrumbs::for('admin.users.show', function ($trail, \App\Entity\User $user) {
@@ -69,7 +69,7 @@ Breadcrumbs::for('admin.regions.index', function ($trail) {
 
 Breadcrumbs::for('admin.regions.create', function ($trail) {
     $trail->parent('admin.regions.index');
-    $trail->push('Create', route('admin.regions.create'));
+    $trail->push('create', route('admin.regions.create'));
 });
 
 Breadcrumbs::for('admin.regions.show', function ($trail, Region $region) {
@@ -95,7 +95,7 @@ Breadcrumbs::for('admin.adverts.categories.index', function ($trail) {
 
 Breadcrumbs::for('admin.adverts.categories.create', function ($trail) {
     $trail->parent('admin.adverts.categories.index');
-    $trail->push('Create', route('admin.adverts.categories.create'));
+    $trail->push('create', route('admin.adverts.categories.create'));
 });
 
 Breadcrumbs::for('admin.adverts.categories.show', function ($trail, Category $category) {
@@ -117,7 +117,7 @@ Breadcrumbs::for('admin.adverts.categories.edit', function ($trail, Category $ca
 
 Breadcrumbs::for('admin.adverts.categories.attributes.create', function ($trail, Category $category) {
     $trail->parent('admin.adverts.categories.show',$category);
-    $trail->push('Create', route('admin.adverts.categories.attributes.create',$category));
+    $trail->push('create', route('admin.adverts.categories.attributes.create',$category));
 });
 
 Breadcrumbs::for('admin.adverts.categories.attributes.show', function ($trail,Category $category, Attribute $attribute) {
@@ -152,10 +152,10 @@ Breadcrumbs::for('cabinet.profile.phone', function ($trail) {
     $trail->push('Phone', route('cabinet.profile.phone'));
 });
 
-//Cabinet Adverts
+//Cabinet adverts
 Breadcrumbs::for('cabinet.adverts.index', function ($trail) {
     $trail->parent('cabinet.home');
-    $trail->push('Adverts', route('cabinet.adverts.index'));
+    $trail->push('adverts', route('cabinet.adverts.index'));
 });
 
 

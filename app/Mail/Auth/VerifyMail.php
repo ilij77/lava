@@ -17,7 +17,7 @@ class VerifyMail extends Mailable
     public $user;
 
     /**
-     * Create a new message instance.
+     * create a new message instance.
      *
      * @return void
      */

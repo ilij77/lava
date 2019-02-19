@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Entity\Adverts;
+namespace App\Entity\Adverts\Advert;
 
+use App\Entity\Adverts\Category;
+use App\Entity\Region;
+use App\Entity\User;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 /**
@@ -56,6 +59,27 @@ class Advert extends Model
     {
         return$this->status===self::STATUS_MODERATION;
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class,'category_id','id');
+    }
+    public function region()
+    {
+        return $this->belongsTo(Region::class,'region_id','id');
+    }
+    public function values()
+    {
+        return $this->hasMany(Value::class,'advert_id','id');
+    }
+    public function photos()
+    {
+        return $this->hasMany(Photo::class,'advert_id','id');
+    }
+
 
 
 

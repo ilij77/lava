@@ -37,7 +37,7 @@ Route::group(
         Route::post('/phone/auth','PhoneController@auth')->name('phone.auth');
     });
 
-    Route::resource('adverts','Adverts\AdvertController');
+    Route::resource('adverts','adverts\AdvertController');
 
 
 });
@@ -54,7 +54,7 @@ Route::group(
         Route::post('/users/{user}/verify', 'UsersController@verify')->name('users.verify');
         Route::resource('regions','RegionController');
 
-        Route::group(['prefix'=>'adverts','as'=>'adverts.','namespace'=>'Adverts'],function ()
+        Route::group(['prefix'=>'adverts','as'=>'adverts.','namespace'=>'adverts'],function ()
         {
             Route::resource('categories','CategoryController');
 

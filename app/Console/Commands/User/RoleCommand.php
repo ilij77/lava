@@ -22,7 +22,7 @@ class RoleCommand extends Command
     protected $description = 'Set role for user';
 
     /**
-     * Create a new command instance.
+     * create a new command instance.
      *
      * @return void
      */

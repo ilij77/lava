@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Region extends Model
 {
     protected $fillable=['name','slug','parent_id'];
+
+    public function getAddress():string
+    {
+        return($this->parent ? $this->parent->getAddress(). ',' :'')  .$this->name;
+    }
+
     public function parent()
     {
         return$this->belongsTo(static::class,'parent_id','id');
