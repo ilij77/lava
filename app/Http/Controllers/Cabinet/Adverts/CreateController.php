@@ -7,15 +7,18 @@ use App\Entity\Region;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\FilledProfile;
 use App\Http\Requests\Adverts\CreateRequest;
+use App\UseCases\Adverts\AdvertService;
+use Illuminate\Support\Facades\Auth;
 
 
 class CreateController extends Controller
 {
     private $service;
 
-    public function __construct()
+    public function __construct(AdvertService $service)
     {
         $this->middleware(FilledProfile::class);
+        $this->service = $service;
     }
 
     public function category()
