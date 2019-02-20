@@ -12,6 +12,10 @@ use App\Entity\Adverts\Category;
 use App\Entity\Region;
 use App\Entity\User;
 use App\Http\Requests\Adverts\CreateRequest;
+use App\Http\Requests\Adverts\PhotosRequest;
+use App\Http\Requests\Adverts\RejectRequest;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AdvertService
 {
@@ -51,5 +55,58 @@ class AdvertService
 
         });
     }
+    public function addPhotos($id,PhotosRequest $request)
+    {
+        $advert=$this->getAdvert($id);
+        DB::transaction(function ()use($request,$advert){
+            foreach($request['files'] as $file){
+                $advert->photos()->create([
+                    'file'=>$file->store('adverts')
+                ]);
+            }
+        });
+    }
+    public function  sendToModeration($id)
+    {
+        $advert=$this->getAdvert($id);
+        $advert->sendToModeration();
+    }
+
+    private function getAdvert($id)
+    {
+        return Advert::findOrFail($id);
+    }
+    public function moderate($id)
+    {
+        $advert=$this->getAdvert($id);
+        $advert->moderate(Carbon::now());
+
+}
+
+public function reject($id,RejectRequest $request)
+{
+    $advert=$this->getAdvert($id);
+    $advert->reject($request['reason']);
+}
+public function editAttributes($id,AttributeRequest$request)
+{
+    $advert=$this->getAdvert($id);
+    DB::transaction(function ()use ($request,$advert){
+        foreach ($advert-values as $value){
+            $value->delete();
+            }
+       foreach ($advert->category->allAttributes() as $attribute){
+            $value=$request['attributes'][$attribute->id] ??  null;
+            if (!empty($value)){
+                $advert->values()->create([
+                    'attribute_id'=>$attribute->id,
+                    'value'=>$value,
+                ]);
+
+                }}
+                });
+
+}
+
 
 }

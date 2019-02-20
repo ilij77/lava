@@ -80,7 +80,41 @@ class Advert extends Model
         return $this->hasMany(Photo::class,'advert_id','id');
     }
 
+public function sendToModeration()
+{
+    if (!$this->isDraft()){
+        throw new \DomainException('Advert is not draft.');
+    }
+    if (!$this->photos()->count()){
+        throw new \DomainException('Fill attributes and upload photos.');
+    }
 
+    $this->update([
+        'status'=>self::STATUS_MODERATION,
+    ]);
+
+}
+
+public function moderate(Carbon $data)
+{
+    if ($this->status!==self::STATUS_MODERATION){
+        throw new \DomainException('Advert is not sent to moderation.');
+    }
+
+    $this->update([
+        'published_at'=>$data,
+        'expires_at'=>$data->copy()->addDay(15),
+        'status'=>self::STATUS_ACTIVE,
+
+    ]);
+}
+public function reject($reason)
+{
+    $this->update([
+        'status'=>self::STATUS_DRAFT,
+        'reject_reason'=>$reason,
+    ]);
+}
 
 
 }
