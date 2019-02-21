@@ -5,6 +5,7 @@ namespace App\Entity\Adverts\Advert;
 use App\Entity\Adverts\Category;
 use App\Entity\Region;
 use App\Entity\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 /**
@@ -116,5 +117,27 @@ public function reject($reason)
     ]);
 }
 
+public function scopeForUser(Builder $query,User $user)
+{
+    return $query->where('user_id',$user->id);
+}
+
+    public function scopeForCategory(Builder $query,Category $category)
+    {
+        return $query->where('category_id',array_merge(
+            [ $category->id],
+            $category->descendants()->pluck('id')->toArray()
+        ));
+    }
+
+    public function scopeForRegion(Builder $query,Region $region)
+    {
+        $ids=[$region->id];
+        $childrenIds=$ids;
+            while($childrenIds= Region::where(['parent_id'=>$childrenIds])->pluck('id')->toArray()){
+                $ids=array_merge($ids,$childrenIds);
+            };
+            return $query->where('region_id',$ids);
+    }
 
 }

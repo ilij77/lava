@@ -11,6 +11,7 @@ use App\Entity\Adverts\Advert\Advert;
 use App\Entity\Adverts\Category;
 use App\Entity\Region;
 use App\Entity\User;
+use App\Http\Requests\Adverts\AttributesRequest;
 use App\Http\Requests\Adverts\CreateRequest;
 use App\Http\Requests\Adverts\PhotosRequest;
 use App\Http\Requests\Adverts\RejectRequest;
@@ -88,12 +89,12 @@ public function reject($id,RejectRequest $request)
     $advert=$this->getAdvert($id);
     $advert->reject($request['reason']);
 }
-public function editAttributes($id,AttributeRequest$request)
+public function editAttributes($id,AttributesRequest $request)
 {
     $advert=$this->getAdvert($id);
     DB::transaction(function ()use ($request,$advert){
         foreach ($advert-values as $value){
-            $value->delete();
+         $advert->values()->delete();
             }
        foreach ($advert->category->allAttributes() as $attribute){
             $value=$request['attributes'][$attribute->id] ??  null;
@@ -102,11 +103,14 @@ public function editAttributes($id,AttributeRequest$request)
                     'attribute_id'=>$attribute->id,
                     'value'=>$value,
                 ]);
-
-                }}
-                });
-
-}
+                }
+            }
+      });
+    }
+    public function  remove($id){
+        $advert=$this->getAdvert($id);
+        $advert->delete();
+    }
 
 
 }
