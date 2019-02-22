@@ -29,6 +29,12 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('admin-panel', function (User $user){
             return $user->isAdmin();
         });
+        Gate::define('show-advert', function (User $user,Advert $advert){
+            return $user->isAdmin()||$user->isModerator()||$advert->user_id===$user->id;
+        });
+        Gate::define('moderate-advert', function (User $user,Advert $advert){
+            return $user->isAdmin()||$user->isModerator();
+        });
         Gate::define('edit-own-advert', function (User $user,Advert $advert){
             return $advert->user_id ===$user->id;
         });

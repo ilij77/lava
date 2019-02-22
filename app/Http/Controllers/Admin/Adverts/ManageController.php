@@ -75,4 +75,17 @@ public function attributes(Advert $advert){
             abort(403);
         }
     }
+
+    public function moderate(Advert $advert)
+    {
+
+        try {
+            $this->service->moderate($advert->id);
+        } catch (\DomainException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('cabinet.adverts.index');
+    }
+
 }

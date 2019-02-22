@@ -6,6 +6,7 @@ use App\Entity\Adverts\Advert\Advert;
 use App\Entity\Adverts\Category;
 use App\Entity\Region;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 
 class AdvertController extends Controller
@@ -14,7 +15,7 @@ class AdvertController extends Controller
 
     public function index(Region $region=null,Category $category=null)
     {
-        $query=Advert::with(['category','region'])->orderBy('id');
+        $query=Advert::active()->with(['category','region'])->orderBy('id');
         if ($category){
             $query->forCategory($category);
         }
@@ -31,7 +32,7 @@ class AdvertController extends Controller
 
     public function show(Advert $advert)
     {
-        if (!($advert->isActive()||!$this->isAllowToShow($advert))){
+        if (!($advert->isActive()||Gate::allows('show-advert',$advert))){
             abort(403);
         }
 
@@ -39,7 +40,17 @@ class AdvertController extends Controller
         return view('adverts.show', compact('advert'));
     }
 
+    public function phone(Advert $advert)
+    {
+        if (!($advert->isActive()||Gate::allows('show-advert',$advert))){
+            abort(403);
+        }
 
-public function isAllowToShow(Advert $advert)
+
+        return $advert->user->phone;
+    }
+
+
+
 
 }

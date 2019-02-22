@@ -9,7 +9,7 @@
 /******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
 /******/ 		}
-/******/ 		// create a new module (and put it into the cache)
+/******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
@@ -305,7 +305,7 @@ var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/axios/lib/co
 var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/defaults.js");
 
 /**
- * create an instance of Axios
+ * Create an instance of Axios
  *
  * @param {Object} defaultConfig The default config for the instance
  * @return {Axios} A new instance of Axios
@@ -323,7 +323,7 @@ function createInstance(defaultConfig) {
   return instance;
 }
 
-// create the default instance to be exported
+// Create the default instance to be exported
 var axios = createInstance(defaults);
 
 // Expose Axios class to allow class inheritance
@@ -486,7 +486,7 @@ var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node
 var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
 
 /**
- * create a new instance of Axios
+ * Create a new instance of Axios
  *
  * @param {Object} instanceConfig The default config for the instance
  */
@@ -638,7 +638,7 @@ module.exports = InterceptorManager;
 var enhanceError = __webpack_require__(/*! ./enhanceError */ "./node_modules/axios/lib/core/enhanceError.js");
 
 /**
- * create an Error with the specified message, config, error code, request and response.
+ * Create an Error with the specified message, config, error code, request and response.
  *
  * @param {string} message The error message.
  * @param {Object} config The config.
@@ -6900,7 +6900,7 @@ function Sizzle( selector, context, results, seed ) {
 }
 
 /**
- * create key-value caches of limited size
+ * Create key-value caches of limited size
  * @returns {function(string, object)} Returns the Object data after storing it on itself with
  *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
  *	deleting the oldest entry
@@ -9255,7 +9255,7 @@ function createOptions( options ) {
 }
 
 /*
- * create a callback list using the following parameters:
+ * Create a callback list using the following parameters:
  *
  *	options: an optional list of space-separated options that will change how
  *			the callback list behaves or a more traditional option object
@@ -11431,7 +11431,7 @@ jQuery.Event = function( src, props ) {
 			returnTrue :
 			returnFalse;
 
-		// create target properties
+		// Create target properties
 		// Support: Safari <=6 - 7 only
 		// Target should not be a text node (#504, #13143)
 		this.target = ( src.target && src.target.nodeType === 3 ) ?
@@ -11451,7 +11451,7 @@ jQuery.Event = function( src, props ) {
 		jQuery.extend( this, props );
 	}
 
-	// create a timestamp if incoming event doesn't have one
+	// Create a timestamp if incoming event doesn't have one
 	this.timeStamp = src && src.timeStamp || Date.now();
 
 	// Mark it as fixed
@@ -11559,7 +11559,7 @@ jQuery.each( {
 	}
 }, jQuery.event.addProp );
 
-// create mouseenter/leave events using mouseover/out and event-time checks
+// Create mouseenter/leave events using mouseover/out and event-time checks
 // so that event delegation works in jQuery.
 // Do the same for pointerenter/pointerleave and pointerover/pointerout
 //
@@ -14765,7 +14765,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 		// Work with a copy of dataTypes in case we need to modify it for conversion
 		dataTypes = s.dataTypes.slice();
 
-	// create converters map with lowercased keys
+	// Create converters map with lowercased keys
 	if ( dataTypes[ 1 ] ) {
 		for ( conv in s.converters ) {
 			converters[ conv.toLowerCase() ] = s.converters[ conv ];
@@ -14986,7 +14986,7 @@ jQuery.extend( {
 			// uncached part of the url
 			uncached,
 
-			// create the final options object
+			// Create the final options object
 			s = jQuery.ajaxSetup( {}, options ),
 
 			// Callbacks context
@@ -15645,7 +15645,7 @@ jQuery.ajaxTransport( function( options ) {
 					};
 				}
 
-				// create the abort callback
+				// Create the abort callback
 				callback = callback( "abort" );
 
 				try {
@@ -16153,7 +16153,7 @@ jQuery.fn.extend( {
 	}
 } );
 
-// create scrollLeft and scrollTop methods
+// Create scrollLeft and scrollTop methods
 jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( method, prop ) {
 	var top = "pageYOffset" === prop;
 
@@ -16207,7 +16207,7 @@ jQuery.each( [ "top", "left" ], function( i, prop ) {
 } );
 
 
-// create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
+// Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
 jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
 	jQuery.each( { padding: "inner" + name, content: type, "": "outer" + name },
 		function( defaultExtra, funcName ) {
@@ -17805,7 +17805,7 @@ return jQuery;
   /*--------------------------------------------------------------------------*/
 
   /**
-   * create a new pristine `lodash` function using the `context` object.
+   * Create a new pristine `lodash` function using the `context` object.
    *
    * @static
    * @memberOf _
@@ -17830,7 +17830,7 @@ return jQuery;
    * lodash.isFunction(lodash.bar);
    * // => true
    *
-   * // create a suped-up `defer` in Node.js.
+   * // Create a suped-up `defer` in Node.js.
    * var defer = _.runInContext({ 'setTimeout': setImmediate }).defer;
    */
   var runInContext = (function runInContext(context) {
@@ -31944,7 +31944,7 @@ return jQuery;
      * _.map(users, _.iteratee('user'));
      * // => ['barney', 'fred']
      *
-     * // create custom iteratee shorthands.
+     * // Create custom iteratee shorthands.
      * _.iteratee = _.wrap(_.iteratee, function(iteratee, func) {
      *   return !_.isRegExp(func) ? iteratee(func) : function(string) {
      *     return func.test(string);
@@ -33606,7 +33606,7 @@ function taskDebounce(fn) {
 var supportsMicroTasks = isBrowser && window.Promise;
 
 /**
-* create a debounced version of a method, that's asynchronously deferred
+* Create a debounced version of a method, that's asynchronously deferred
 * but called in the minimum time possible.
 *
 * @method
@@ -36390,6 +36390,15 @@ module.exports = function(module) {
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+$(document).on('click', '.phone-button', function () {
+  var button = $(this);
+  axios.post(button.data('source')).then(function (response) {
+    button.find('.number').html(response.data);
+  }).catch(function (error) {
+    console.error(error);
+  });
+});
 
 /***/ }),
 

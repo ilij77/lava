@@ -13559,3 +13559,13 @@ body {
   flex: 1;
 }
 
+.adverts-list .advert {
+  margin: 20px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.adverts-list .advert:first-of-type {
+  margin-top: 0;
+}
+

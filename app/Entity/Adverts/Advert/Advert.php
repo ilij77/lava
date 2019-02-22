@@ -139,5 +139,18 @@ public function scopeForUser(Builder $query,User $user)
             };
             return $query->where('region_id',$ids);
     }
+    public function getValue($id)
+    {
+        foreach($this->values as $value){
+            if ($value->attribute_id===$id){
+                return $value->value;
+            }
+        }
+        return null;
+    }
+    public function scopeActive(Builder $query,Region $region)
+    {
+        return $query->where('status',self::STATUS_ACTIVE);
+    }
 
 }

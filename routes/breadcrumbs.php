@@ -1,6 +1,7 @@
 <?php
 
 // Home
+use App\Entity\Adverts\Advert\Advert;
 use App\Entity\Adverts\Attribute;
 use App\Entity\Adverts\Category;
 use App\Entity\Region;
@@ -157,6 +158,57 @@ Breadcrumbs::for('cabinet.adverts.index', function ($trail) {
     $trail->parent('cabinet.home');
     $trail->push('adverts', route('cabinet.adverts.index'));
 });
+
+Breadcrumbs::for('cabinet.adverts.create', function ($trail) {
+    $trail->parent('adverts.index');
+    $trail->push('Create', route('cabinet.adverts.create'));
+});
+
+Breadcrumbs::for('cabinet.adverts.create.region', function ($trail, Category $category,Region $region=null) {
+    $trail->parent('cabinet.adverts.create');
+    $trail->push($category->name, route('cabinet.adverts.create.region',[$category,$region]));
+});
+
+Breadcrumbs::for('cabinet.adverts.create.advert', function ($trail, Category $category,Region $region=null) {
+    $trail->parent('cabinet.adverts.create.region',$category,$region);
+    $trail->push($region ? $region->name : 'All', route('cabinet.adverts.create.adverts',[$category,$region]));
+});
+
+
+// Adverts
+
+Breadcrumbs::for('adverts.inner_region', function ($trail, Region $region=null,Category $category=null) {
+    if ($region && $parent = $region->parent) {
+        $trail->parent('adverts.inner_region', $parent,$category);
+    } else {
+        $trail->parent('home');
+        $trail->push('Adverts', route('adverts.index'));
+    }
+    if ($region) {
+        $trail->push($region->name, route('adverts.index',$region,$category));
+    }
+});
+
+Breadcrumbs::for('adverts.inner_category', function ($trail, Region $region=null,Category $category=null) {
+    if ($category && $parent = $category->parent) {
+        $trail->parent('adverts.inner_category', $region,$category);
+    } else {
+        $trail->parent('adverts.inner_region', $region,$category);
+    }
+    if ($category) {
+        $trail->push($category->name, route('adverts.index',$region,$category));
+    }
+});
+
+Breadcrumbs::for('adverts.index', function ($trail, Region $region=null,Category $category=null) {
+       $trail->parent('adverts.inner_category',$region,$category);
+});
+
+Breadcrumbs::for('adverts.show', function ($trail,Advert $advert) {
+    $trail->parent('adverts.index', $advert->region,$advert->category);
+    $trail->push($advert->title, route('adverts.show', $advert));
+});
+
 
 
 

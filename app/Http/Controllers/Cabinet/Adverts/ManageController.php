@@ -21,9 +21,25 @@ class ManageController extends Controller
         $this->middleware([FilledProfile::class]);
     }
 
-public function attributes(Advert $advert){
+public function edit(Advert $advert){
        return view('adverts.edit.attributes',compact('advert'));
 }
+
+
+
+
+    public function update(EditRequest $request, Advert $advert)
+    {
+        $this->checkAccess($advert);
+        try {
+            $this->service->edit($advert->id, $request);
+        } catch (\DomainException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('adverts.show', $advert);
+    }
+
 
 
 
@@ -55,6 +71,17 @@ public function attributes(Advert $advert){
         return redirect()->route('adverts.show', $advert);
     }
 
+    public function send(Advert $advert)
+    {
+        $this->checkAccess($advert);
+        try {
+            $this->service->sendToModeration($advert->id);
+        } catch (\DomainException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
+        return redirect()->route('adverts.show', $advert);
+    }
 
 
     public function destroy(Advert $advert)
