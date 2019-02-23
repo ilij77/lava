@@ -182,7 +182,7 @@ Breadcrumbs::for('adverts.inner_region', function ($trail, Region $region=null,C
         $trail->parent('adverts.inner_region', $parent,$category);
     } else {
         $trail->parent('home');
-        $trail->push('Adverts', route('adverts.index'));
+        $trail->push('Adverts', route('adverts.index',$region,$category));
     }
     if ($region) {
         $trail->push($region->name, route('adverts.index',$region,$category));
@@ -208,6 +208,12 @@ Breadcrumbs::for('adverts.show', function ($trail,Advert $advert) {
     $trail->parent('adverts.index', $advert->region,$advert->category);
     $trail->push($advert->title, route('adverts.show', $advert));
 });
+
+Breadcrumbs::for('adverts.index.all', function ($trail, Region $region=null,Category $category=null) {
+    $trail->parent('adverts.inner_category',$region,$category);
+
+});
+
 
 
 

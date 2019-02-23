@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('breadcrumbs', '')
+{{--@section('breadcrumbs', '')--}}
 
 @section('content')
 
@@ -14,7 +14,7 @@
                     <div class="col-md-3">
                         <ul class="list-unstyled">
                             @foreach ($chunk as $current)
-                                <li><a href="{{ route('adverts.index.all', $current) }}">{{ $current->name }}</a></li>
+                                <li><a href="{{ route('adverts.index.all',[null, $current]) }}">{{ $current->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -33,7 +33,7 @@
                     <div class="col-md-3">
                         <ul class="list-unstyled">
                             @foreach ($chunk as $current)
-                                <li><a href="{{ route('adverts.index', [$current] }}">{{ $current->name }}</a></li>
+                                <li><a href="{{ route('adverts.index', [$current]) }}">{{ $current->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>

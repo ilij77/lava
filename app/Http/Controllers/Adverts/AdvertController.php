@@ -26,7 +26,11 @@ class AdvertController extends Controller
         $adverts=$query->paginate(20);
         $regions=$region ? $region->children()->orderBy('name')->getModels():
             Region::roots()->orderBy('name')->getModels();
-        return view('adverts.index',compact('category','region','adverts'));
+
+        $categories=$category ? $category->children()->defaultOrder()->getModels():
+            Category::whereIsRoot()->defaultOrder()->getModels();
+
+        return view('adverts.index',compact('category','region','adverts','regions','categories'));
 
     }
 

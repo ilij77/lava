@@ -111,6 +111,10 @@ public function editAttributes($id,AttributesRequest $request)
         $advert=$this->getAdvert($id);
         $advert->delete();
     }
+    public function expire(Advert $advert)
+    {
+        $advert->expire();
+    }
 
 
 }

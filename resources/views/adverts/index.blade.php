@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
-@section('search')
-    @include('layouts.partials.search', ['category' => $category, 'route' => '?'])
-@endsection
+
 
 @section('content')
     @if ($categories)
@@ -21,7 +19,7 @@
                             <ul class="list-unstyled">
                                 @foreach ($chunk as $current)
                                     <li>
-                                        <a href="{{ route('adverts.index', array_merge(['adverts_path' => adverts_path($region, $current)], request()->all())) }}">{{ $current->name }}</a>
+                                        <a href="{{ route('adverts.index', [$region, $current])}}">{{ $current->name }}</a>
                                         ({{ $categoriesCounts[$current->id] ?? 0 }})
                                     </li>
                                 @endforeach
@@ -49,7 +47,7 @@
                             <ul class="list-unstyled">
                                 @foreach ($chunk as $current)
                                     <li>
-                                        <a href="{{ route('adverts.index', array_merge(['adverts_path' => adverts_path($current, $category)], request()->all())) }}">{{ $current->name }}</a>
+                                        <a href="{{ route('adverts.index',[$current, $category]) }}">{{ $current->name }}</a>
                                         ({{ $regionsCounts[$current->id] ?? 0 }})
                                     </li>
                                 @endforeach
@@ -85,15 +83,7 @@
 
             {{ $adverts->links() }}
         </div>
-        <div class="col-md-3">
-            <div
-                class="banner mb-3"
-                data-url="{{ route('banner.get') }}"
-                data-format="240x400"
-                data-category="{{ $category ? $category->id : '' }}"
-                data-region="{{ $region ? $region->id : '' }}"
-            ></div>
-        </div>
+
     </div>
 
 @endsection

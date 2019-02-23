@@ -117,6 +117,12 @@ public function reject($reason)
     ]);
 }
 
+    public function expire()
+    {
+        $this->update([
+            'status'=>self::STATUS_CLOSED,
+        ]);
+    }
 public function scopeForUser(Builder $query,User $user)
 {
     return $query->where('user_id',$user->id);
@@ -148,7 +154,7 @@ public function scopeForUser(Builder $query,User $user)
         }
         return null;
     }
-    public function scopeActive(Builder $query,Region $region)
+    public function scopeActive(Builder $query)
     {
         return $query->where('status',self::STATUS_ACTIVE);
     }
